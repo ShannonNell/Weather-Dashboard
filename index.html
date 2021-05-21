@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <title>Weather Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="row">
+            <div class="col-12">
+                <h1>Weather Dashboard</h1>
+              </div>
+            </header>
+        
+        <!-- main -->
+        <div class="row">
+            <!-- left column -->
+            <div class="col-4">
+                <!-- Search form -->
+                <div class="row">
+                    <form class="mb-3 col-12">
+                        <label for="city" class="form-label">Search for a City:</label>
+                        <input type="text" class="form-control" id="form-input" placeholder="Enter city">
+                        <button class="btn btn-primary col-12 mt-3" type="button">Search</button>
+                    </form>
+                </div>
+
+                <!-- Search items -->
+                <div class="row">
+                    <span class="mb-3 col-12 border-top border-2 border-secondary">
+                        <button class="btn btn-secondary col-12 mt-3" type="button">TempButton</button>
+                    </span>
+                </div>
+            </div>
+
+            <!-- right column -->
+            <div class="col-8">
+                Column 2
+              </div>
+        </div>
+    </div>
+
+    <!-- JS Scripts -->
+    <!-- not sure I need this one below -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
