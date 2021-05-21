@@ -13,20 +13,22 @@
 <body>
     <div class="container">
         <!-- Header -->
-        <header class="row">
+        <header class="row" id="header">
             <div class="col-12">
                 <h1>Weather Dashboard</h1>
-              </div>
-            </header>
+            </div>
+        </header>
         
         <!-- main -->
         <div class="row">
             <!-- left column -->
-            <div class="col-4">
+            <div class="col-4 mt-2">
                 <!-- Search form -->
                 <div class="row">
                     <form class="mb-3 col-12">
-                        <label for="city" class="form-label">Search for a City:</label>
+                        <label for="city">
+                            <h2 class="titles">Search for a City:</h2>
+                        </label>
                         <input type="text" class="form-control" id="form-input" placeholder="Enter city">
                         <button class="btn btn-primary col-12 mt-3" type="button">Search</button>
                     </form>
@@ -41,8 +43,22 @@
             </div>
 
             <!-- right column -->
-            <div class="col-8">
-                Column 2
+            <div class="col-8 mt-2">
+                <!-- Row for City Information -->
+                <div class="row border border-dark">Atlanta ex</div>
+       
+                <!-- Row for 5 day forcast -->
+                <div class="row justify-content-between mt-2">
+                    <div class="forecast">
+                        will dynamically add p "5-Day Forecast:"
+                    </div>
+                    <div class="col-2">Day 1</div>
+                    <div class="col-2">Day 2</div>
+                    <div class="col-2">Day 3</div>
+                    <div class="col-2">Day 4</div>
+                    <div class="col-2">Day 5</div>
+                </div>
+
               </div>
         </div>
     </div>

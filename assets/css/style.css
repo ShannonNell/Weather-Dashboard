@@ -2,7 +2,27 @@
     margin: 0;
     padding: 0;
 }
-/* 
-div {
+
+
+/* div {
     border: solid 1px red;
 } */
+
+#header {
+    background-color: #FA8BFF;
+    background-image: linear-gradient(90deg, #6b9dd3 00%, #110d5b 70%);
+    /* background-size: 1px 100px; */
+    background-position: 0 -10px;
+    color: white;
+    text-align: center;
+}
+
+#header h1 {
+    font-size: 25px;
+    padding: 7px;
+}
+
+.titles {
+    font-size: 20px;
+    font-weight: bold;
+}
