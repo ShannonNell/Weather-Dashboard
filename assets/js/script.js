@@ -1,3 +1,7 @@
+//Variables
+var cityDivEl = document.querySelector('#cityDiv');
+var citySearchInputEl = document.querySelector('#searched-city');
+
 //fetch city weather from API 
 function getCity(city) {
     var apiKey = '83bfc16ec7111348deb193634d24e4ad';
@@ -9,13 +13,16 @@ function getCity(city) {
         })
         .then(function(data) {
             // console.log(data);
-            cityWeather(data);
+            cityWeather(data, city);
         });
 };
 
-function cityWeather(data) {
+function cityWeather(weather, searchCity) {
     //clear any old content
     //date element
+    var currentDay = document.createElement('span');
+    currentDay.textContent = " (" + moment().format("DD MMM, YYYY") + ")";
+    citySearchInputEl.appendChild(currentDay);
     //image el for weather conditions
     //span el for temp data
     //span el for humidity
@@ -24,6 +31,7 @@ function cityWeather(data) {
     //append to city Div
 }
 
+cityWeather();
 
 
 //fetch UV index

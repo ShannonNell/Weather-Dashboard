@@ -25,38 +25,39 @@
             <div class="col-4 mt-2">
                 <!-- Search form -->
                 <div class="row">
-                    <form class="mb-3 col-12">
+                    <form class="mb-3 col-12" id="city-search-form">
                         <label for="city">
                             <h2 class="titles">Search for a City:</h2>
                         </label>
-                        <input type="text" class="form-control" id="form-input" placeholder="Enter city">
-                        <button class="btn btn-primary col-12 mt-3" type="button">Search</button>
+                        <input type="text" class="form-control" id="city" placeholder="Enter city" />
+                        <button class="btn btn-primary col-12 mt-3" type="submit">Search</button>
                     </form>
                 </div>
 
                 <!-- Search items -->
                 <div class="row">
-                    <span class="mb-3 col-12 border-top border-2 border-secondary">
+                    <div class="mb-3 col-12 border-top border-2 border-secondary">
                         <button class="btn btn-secondary col-12 mt-3" type="button">TempButton</button>
-                    </span>
+                    </div>
                 </div>
             </div>
 
             <!-- right column -->
             <div class="col-8 mt-2">
                 <!-- Row for City Information -->
-                <div class="row border border-dark" id="city">Atlanta ex</div>
+                <div class="row border border-dark" id="cityDiv">
+                    <div class="col-12">
+                        <h2 id="searched-city">CITY</h2>
+                        <div id="current-weather" class="list-group"></div>
+                    </div>    
+                </div>
        
                 <!-- Row for 5 day forcast -->
                 <div class="row justify-content-between mt-2">
-                    <div class="forecast">
-                        will dynamically add p "5-Day Forecast:"
+                    <div class="five-day-forecast">
+                        <h2 class="col-12" id="forecast"></h2>
+                        <div id="five-day-div"></div>
                     </div>
-                    <div class="col-2">Day 1</div>
-                    <div class="col-2">Day 2</div>
-                    <div class="col-2">Day 3</div>
-                    <div class="col-2">Day 4</div>
-                    <div class="col-2">Day 5</div>
                 </div>
 
               </div>
@@ -64,6 +65,8 @@
     </div>
 
     <!-- JS Scripts -->
+    <!-- Moment -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- not sure I need this one below -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>
