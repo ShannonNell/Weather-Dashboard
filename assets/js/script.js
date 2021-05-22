@@ -14,12 +14,12 @@ function getCityWeather(city) {
         })
         .then(function(data) {
             // console.log(data);
-            displayWeather(data, city);
+            displayWeather(data);
         });
 };
 
 //weather = data from above
-function displayWeather(weather, city) {
+function displayWeather(weather) {
     //clear any old contentl
     citySearchInputEl.textContent = "City value to come"; //city.value;
     //date element
@@ -27,10 +27,10 @@ function displayWeather(weather, city) {
     currentDay.textContent = " (" + moment().format("DD MMM, YYYY") + ")";
     citySearchInputEl.appendChild(currentDay);
 
-    //image el for weather conditions
-    // var weatherImg = document.createElement("img");
-    // weatherImg.setAttribute("src", );
-    // citySearchInputEl.appendChild(weatherImg);
+    // image el for weather conditions
+    var weatherImg = document.createElement("img");
+    weatherImg.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`); //can add @2x before png to make bigger
+    citySearchInputEl.appendChild(weatherImg);
 
     //span el for temp data
     var temperature = document.createElement('span');
