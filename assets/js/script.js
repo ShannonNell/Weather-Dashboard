@@ -150,19 +150,35 @@ function display5Day(forecast) {
         forecastDate.classList = "card-header";
         forecastDate.textContent = "01/01/2021" //moment().format("DD MMM, YYYY") will need to fix
         forecastEl.appendChild(forecastDate);
+
         //weather icon
+        var weatherIcon = document.createElement('img');
+        weatherIcon.setAttribute('src', `https://openweathermap.org/img/wn/${forecastDay.weather[0].icon}.png`);
+        weatherIcon.classList = "card-body text-center";
+        forecastEl.appendChild(weatherIcon);
 
         //temperature span
-
+        var tempForecast = document.createElement('span');
+        tempForecast.classList = "card-body text center";
+        tempForecast.textContent = "Temp: " + forecastDay.main.temp + " °C";
+        forecastEl.appendChild(tempForecast);
+        
         //wind span
-
+        var windForecast = document.createElement('span');
+        windForecast.classList = "card-body text center";
+        windForecast.textContent = "Wind: " + forecastDay.wind.speed + " m/s";
+        forecastEl.appendChild(windForecast);
+        
         //humidity span
+        var humidityForecast = document.createElement('span');
+        humidityForecast.classList = "card-body text center";
+        humidityForecast.textContent = "Humidity: " + forecastDay.main.humidity + "%";
+        forecastEl.appendChild(humidityForecast);
 
         //append forecastEl to page
         forecastDivEl.appendChild(forecastEl);
-
     }
-}
+};
 
 //Listen for search click
 form.addEventListener('submit', function (event) {
