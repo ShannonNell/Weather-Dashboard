@@ -5,6 +5,11 @@ var form = document.querySelector('#city-search-form')
 var cityDivEl = document.querySelector('#cityCurrentWeather');
 var citySearchInputEl = document.querySelector('#searched-city');
 var currentWeatherEl = document.querySelector('#current-weather');
+//forecast var's
+// var forecastContainer = document.querySelector('#five-day-forecast');
+var forecastTitle = document.querySelector('#forecast');
+var forecastDivEl = document.querySelector('#five-day-div');
+
 
 //fetch city weather from API 
 function getCityWeather(city) {
@@ -124,6 +129,40 @@ function get5Day(city) {
         });
 };
 
+//display future conditions
+function display5Day(forecast) {
+    //empty forecast container
+    forecastDivEl.textContent = "";
+    forecastTitle.textContent = "5-Day Forecast:";
+
+    //loop over 5 days of forecast data
+    var forecast = forecast.list;
+    // console.log(forecast);
+    for(var i = 5; i < forecast.length; i=i+8) {
+        var forecastDay = forecast[i];
+
+        //create div with classList bootstrap card
+        var forecastEl = document.createElement('div');
+        forecastEl.classList = "bg-primary text-light m-2 card";
+
+        //date element
+        var forecastDate = document.createElement('h3');
+        forecastDate.classList = "card-header";
+        forecastDate.textContent = "01/01/2021" //moment().format("DD MMM, YYYY") will need to fix
+        forecastEl.appendChild(forecastDate);
+        //weather icon
+
+        //temperature span
+
+        //wind span
+
+        //humidity span
+
+        //append forecastEl to page
+        forecastDivEl.appendChild(forecastEl);
+
+    }
+}
 
 //Listen for search click
 form.addEventListener('submit', function (event) {
