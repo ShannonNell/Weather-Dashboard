@@ -1,4 +1,7 @@
 //Variables
+// Search vars
+var form = document.querySelector('#city-search-form')
+//Current Conditions var's
 var cityDivEl = document.querySelector('#cityCurrentWeather');
 var citySearchInputEl = document.querySelector('#searched-city');
 var currentWeatherEl = document.querySelector('#current-weather');
@@ -6,7 +9,7 @@ var currentWeatherEl = document.querySelector('#current-weather');
 //fetch city weather from API 
 function getCityWeather(city) {
     var apiKey = '83bfc16ec7111348deb193634d24e4ad';
-    var apiURL = `http://api.openweathermap.org/data/2.5/weather?q=London&units=metric&appid=${apiKey}`
+    var apiURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
     
     fetch(apiURL)
         .then(function(response) {
@@ -20,8 +23,10 @@ function getCityWeather(city) {
 
 //weather = data from above
 function displayWeather(weather) {
-    //clear any old contentl
-    citySearchInputEl.textContent = "City value to come"; //city.value;
+    //clear any old content
+    currentWeatherEl.textContent = "";
+    citySearchInputEl.textContent = city.value; 
+    
     //date element
     var currentDay = document.createElement('span');
     currentDay.textContent = " (" + moment().format("DD MMM, YYYY") + ")";
@@ -46,20 +51,28 @@ function displayWeather(weather) {
     
     //span el for wind speed
     var windSpeed = document.createElement('span');
-    windSpeed.textContent = "Wind Speed: " + weather.wind.speed + " KM/H";
+    windSpeed.textContent = "Wind Speed: " + weather.wind.speed + "m/s";
     windSpeed.classList = "list-group-item"
     currentWeatherEl.appendChild(windSpeed);
 
 
-}
+};
 
-getCityWeather(city);
+
 
 
 //fetch UV index
 
 
 //fetch future conditions
+
+
+//Listen for search click
+form.addEventListener('submit', function (event) {
+    event.preventDefault(); 
+    var city = document.querySelector('#city').value;
+    getCityWeather(city);
+});
 
 
 
