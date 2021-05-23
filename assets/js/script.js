@@ -84,32 +84,45 @@ function displayUVIndex(onecall) {
     var uvi = onecall.current.uvi;
     uvIndex.textContent = "UV Index: ";
     uvIndex.classList = "list-item";
-
+    
     uviValue = document.createElement('span');
     uviValue.textContent = uvi;
     // console.log(onecall.current.uvi);
-
+    
     uvIndex.appendChild(uviValue);
-
+    
     currentWeatherEl.appendChild(uvIndex);
     
     //color change based on UV index
     if (uvi <=2) {
-        console.log('low');
+        // console.log('low');
         uviValue.classList = "low";
     } else if (uvi >2 && uvi <=5) {
-        console.log('medium');
+        // console.log('medium');
         uviValue.classList = "medium";
     } else if (uvi >5 && uvi <=7) {
-        console.log('high');
+        // console.log('high');
         uviValue.classList = "high";
     } else if (uvi >7) {
-        console.log('very high');
+        // console.log('very high');
         uviValue.classList = "very-high";
     }
 };
 
 //fetch future conditions
+function get5Day(city) {
+    var apiKey = '83bfc16ec7111348deb193634d24e4ad';
+    var apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+    
+    fetch(apiURL)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            display5Day(data);
+            // console.log(data);
+        });
+};
 
 
 //Listen for search click
@@ -117,6 +130,7 @@ form.addEventListener('submit', function (event) {
     event.preventDefault(); 
     var city = document.querySelector('#city').value;
     getCityWeather(city);
+    get5Day(city);
 });
 
 
