@@ -40,19 +40,19 @@ function displayWeather(weather) {
     //span el for temp data
     var temperature = document.createElement('span');
     temperature.textContent = "Temperature: " + weather.main.temp + " °C";
-    temperature.classList = "list-group-item";
+    temperature.classList = "list-item";
     currentWeatherEl.appendChild(temperature);
     
     //span el for humidity
     var humidity = document.createElement('span');
     humidity.textContent = "Humidity: " + weather.main.humidity + "%";
-    humidity.classList = "list-group-item";
+    humidity.classList = "list-item";
     currentWeatherEl.appendChild(humidity);
     
     //span el for wind speed
     var windSpeed = document.createElement('span');
     windSpeed.textContent = "Wind Speed: " + weather.wind.speed + "m/s";
-    windSpeed.classList = "list-group-item";
+    windSpeed.classList = "list-item";
     currentWeatherEl.appendChild(windSpeed);
 
     //get UV data with lat and lon
@@ -81,17 +81,34 @@ function getUVIndex(lat,lon) {
 //display UV index
 function displayUVIndex(onecall) {
     var uvIndex = document.createElement('div');
+    var uvi = onecall.current.uvi;
     uvIndex.textContent = "UV Index: ";
-    uvIndex.classList = "list-group-item";
+    uvIndex.classList = "list-item";
 
     uviValue = document.createElement('span');
-    uviValue.textContent = onecall.current.uvi;
-    console.log(onecall.current.uvi);
+    uviValue.textContent = uvi;
+    // console.log(onecall.current.uvi);
 
     uvIndex.appendChild(uviValue);
 
     currentWeatherEl.appendChild(uvIndex);
-}
+    
+    //color change based on UV index
+    if (uvi <=2) {
+        console.log('low');
+        uviValue.classList = "low";
+    } else if (uvi >2 && uvi <=5) {
+        console.log('medium');
+        uviValue.classList = "medium";
+    } else if (uvi >5 && uvi <=7) {
+        console.log('high');
+        uviValue.classList = "high";
+    } else if (uvi >7) {
+        console.log('very high');
+        uviValue.classList = "very-high";
+    }
+};
+
 //fetch future conditions
 
 
