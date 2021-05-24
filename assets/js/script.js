@@ -214,7 +214,7 @@ function pastCities(pastSearch) {
     //create button for past cities
     var pastCitiesButton = document.createElement("button");
     pastCitiesButton.textContent = pastSearch.charAt(0).toUpperCase() + pastSearch.slice(1);
-    pastCitiesButton.classList = "d-flex btn btn-secondary col-12 mt-3";
+    pastCitiesButton.classList = "d-flex btn btn-secondary text-light justify-content-center col-12 mt-3";
     
     pastCitiesButton.setAttribute("city-name", pastSearch);
     pastCitiesButton.setAttribute("type", "submit");
