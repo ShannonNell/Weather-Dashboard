@@ -56,7 +56,7 @@ function getCityWeather(city) {
 function displayWeather(weather, searchCity) {
     //clear any old content
     currentWeatherEl.textContent = "";
-    citySearchInputEl.textContent = searchCity; 
+    citySearchInputEl.textContent = searchCity.charAt(0).toUpperCase() + searchCity.slice(1); 
 
     //date element
     var currentDay = document.createElement('span');
@@ -173,7 +173,7 @@ function display5Day(forecast) {
         forecastEl.classList = "cardBg text-light m-2 card";
 
         //date element
-        var forecastDate = document.createElement('h5');
+        var forecastDate = document.createElement('h6');
         forecastDate.classList = "card-header";
         //get unix timestamp dt and format it
         forecastDate.textContent = moment.unix(forecastDay.dt).format("DD/MM/YYYY");
@@ -213,7 +213,7 @@ function pastCities(pastSearch) {
     // console.log(pastSearch);
     //create button for past cities
     var pastCitiesButton = document.createElement("button");
-    pastCitiesButton.textContent = pastSearch;
+    pastCitiesButton.textContent = pastSearch.charAt(0).toUpperCase() + pastSearch.slice(1);
     pastCitiesButton.classList = "d-flex btn btn-secondary col-12 mt-3";
     
     pastCitiesButton.setAttribute("city-name", pastSearch);
