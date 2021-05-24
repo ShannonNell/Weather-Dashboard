@@ -1,6 +1,7 @@
 //Variables
 // Search vars
-var form = document.querySelector('#city-search-form')
+var form = document.querySelector('#city-search-form');
+var cityInput = document.querySelector('#city');
 //Current Conditions var's
 var cityDivEl = document.querySelector('#cityCurrentWeather');
 var citySearchInputEl = document.querySelector('#searched-city');
@@ -12,8 +13,29 @@ var forecastDivEl = document.querySelector('#five-day-div');
 //past search 
 var pastSearchEl = document.querySelector('.pastSearch');
 //empty array for cities to be placed
-var cities = {};
+var cities = [];
 
+//Form entry submitted
+function formSubmit(event) {
+    event.preventDefault(); 
+    var city = cityInput.value.trim();
+    if(city) {
+        getCityWeather(city);
+        get5Day(city);
+        cities.push({city}); ///here its getting messed up
+        cityInput.value = "";
+    } else {
+        alert("Please enter a city");
+    }
+    saveCity();
+    pastCities(city);
+}
+
+//save Cities to localStorage
+function saveCity() {
+    localStorage.setItem("cities", JSON.stringify(cities));
+    // console.log(cities);
+};
 
 //fetch city weather from API 
 function getCityWeather(city) {
@@ -26,15 +48,15 @@ function getCityWeather(city) {
         })
         .then(function(data) {
             // console.log(data);
-            displayWeather(data);
+            displayWeather(data, city);
         });
 };
 
 //weather = data from above
-function displayWeather(weather) {
+function displayWeather(weather, searchCity) {
     //clear any old content
     currentWeatherEl.textContent = "";
-    citySearchInputEl.textContent = city.value; 
+    citySearchInputEl.textContent = searchCity; 
 
     //date element
     var currentDay = document.createElement('span');
@@ -98,9 +120,6 @@ function displayUVIndex(onecall) {
     uviValue.textContent = uvi;
     // console.log(onecall.current.uvi);
     
-    uvIndex.appendChild(uviValue);
-    
-    currentWeatherEl.appendChild(uvIndex);
     
     //color change based on UV index
     if (uvi <=2) {
@@ -116,6 +135,10 @@ function displayUVIndex(onecall) {
         // console.log('very high');
         uviValue.classList = "very-high";
     }
+
+    uvIndex.appendChild(uviValue);
+    
+    currentWeatherEl.appendChild(uvIndex);
 };
 
 //fetch future conditions
@@ -185,15 +208,9 @@ function display5Day(forecast) {
     }
 };
 
-//save Cities to localStorage
-function saveCity() {
-    localStorage.setItem("cities", JSON.stringify(cities));
-    console.log("City was saved");
-};
-
 //display pastCities
 function pastCities(pastSearch) {
-    console.log(pastSearch);
+    // console.log(pastSearch);
     //create button for past cities
     var pastCitiesButton = document.createElement("button");
     pastCitiesButton.textContent = pastSearch;
@@ -204,8 +221,6 @@ function pastCities(pastSearch) {
     
     //prepend or append?
     pastSearchEl.appendChild(pastCitiesButton);
-
-    recallPastCity();
 };
 
 // recall the city 
@@ -217,19 +232,7 @@ function recallPastCity(event) {
     }
 }
 
-function formSubmit(event) {
-    event.preventDefault(); 
-    var city = document.querySelector('#city').value.trim();
-    if(city) {
-        getCityWeather(city);
-        get5Day(city);
-        city.value = "";
-    } else {
-        alert("Please enter a city");
-    }
-    saveCity();
-    pastCities(city);
-}
+
 //Listen for search click
 form.addEventListener('submit', formSubmit);
 
