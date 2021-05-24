@@ -9,6 +9,10 @@ var currentWeatherEl = document.querySelector('#current-weather');
 // var forecastContainer = document.querySelector('#five-day-forecast');
 var forecastTitle = document.querySelector('#forecast');
 var forecastDivEl = document.querySelector('#five-day-div');
+//past search 
+var pastSearchEl = document.querySelector('.pastSearch');
+//empty array for cities to be placed
+var cities = {};
 
 
 //fetch city weather from API 
@@ -181,12 +185,39 @@ function display5Day(forecast) {
     }
 };
 
+//save Cities to localStorage
+function saveCity() {
+    localStorage.setItem("cities", JSON.stringify(cities));
+    console.log("City was saved");
+};
+
+//display pastCities
+function pastCities(pastSearch) {
+    console.log(pastSearch);
+    //button
+    var pastCitiesButton = document.createElement("button");
+    pastCitiesButton.textContent = pastSearch;
+    pastCitiesButton.classList = "d-flex btn btn-secondary col-12 mt-3"; //"d-flex w-100 btn-light border p-2"
+    
+    pastCitiesButton.setAttribute("city-data", pastSearch);
+    pastCitiesButton.setAttribute("type", "submit");
+    
+    pastSearchEl.appendChild(pastCitiesButton);
+};
+
 //Listen for search click
 form.addEventListener('submit', function (event) {
     event.preventDefault(); 
-    var city = document.querySelector('#city').value;
-    getCityWeather(city);
-    get5Day(city);
+    var city = document.querySelector('#city').value.trim();
+    if(city) {
+        getCityWeather(city);
+        get5Day(city);
+        city.value = "";
+    } else {
+        alert("Please enter a city");
+    }
+    saveCity();
+    pastCities(city);
 });
 
 
