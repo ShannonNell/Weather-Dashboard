@@ -23,9 +23,9 @@ function formSubmit(event) {
         getCityWeather(city);
         get5Day(city);
         cities.push({city}); ///here its getting messed up
-        cityInput.value = "";
+        cityInput.value = '';
     } else {
-        alert("Please enter a city");
+        alert('Please enter a city');
     }
     saveCity();
     pastCities(city);
@@ -33,7 +33,7 @@ function formSubmit(event) {
 
 //save Cities to localStorage
 function saveCity() {
-    localStorage.setItem("cities", JSON.stringify(cities));
+    localStorage.setItem('cities', JSON.stringify(cities));
     // console.log(cities);
 };
 
@@ -55,35 +55,35 @@ function getCityWeather(city) {
 //weather = data from above
 function displayWeather(weather, searchCity) {
     //clear any old content
-    currentWeatherEl.textContent = "";
+    currentWeatherEl.textContent = '';
     citySearchInputEl.textContent = searchCity.charAt(0).toUpperCase() + searchCity.slice(1); 
 
     //date element
     var currentDay = document.createElement('span');
-    currentDay.textContent = " (" + moment(weather.dt.value).format("DD MMM, YYYY") + ")"; //can use .dt.value OR sys.dt_txt
+    currentDay.textContent = ' (' + moment(weather.dt.value).format('DD MMM, YYYY') + ')'; //can use .dt.value OR sys.dt_txt
     citySearchInputEl.appendChild(currentDay);
 
     // image el for weather conditions
-    var weatherImg = document.createElement("img");
-    weatherImg.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`); //can add @2x before png to make bigger
+    var weatherImg = document.createElement('img');
+    weatherImg.setAttribute('src', `https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`); //can add @2x before png to make bigger
     citySearchInputEl.appendChild(weatherImg);
 
     //span el for temp data
     var temperature = document.createElement('span');
-    temperature.textContent = "Temperature: " + weather.main.temp + " °C";
-    temperature.classList = "list-item";
+    temperature.textContent = 'Temperature: ' + weather.main.temp + ' °C';
+    temperature.classList = 'list-item';
     currentWeatherEl.appendChild(temperature);
     
     //span el for humidity
     var humidity = document.createElement('span');
-    humidity.textContent = "Humidity: " + weather.main.humidity + "%";
-    humidity.classList = "list-item";
+    humidity.textContent = 'Humidity: ' + weather.main.humidity + '%';
+    humidity.classList = 'list-item';
     currentWeatherEl.appendChild(humidity);
     
     //span el for wind speed
     var windSpeed = document.createElement('span');
-    windSpeed.textContent = "Wind Speed: " + weather.wind.speed + "m/s";
-    windSpeed.classList = "list-item";
+    windSpeed.textContent = 'Wind Speed: ' + weather.wind.speed + 'm/s';
+    windSpeed.classList = 'list-item';
     currentWeatherEl.appendChild(windSpeed);
 
     //get UV data with lat and lon
@@ -113,8 +113,8 @@ function getUVIndex(lat,lon) {
 function displayUVIndex(onecall) {
     var uvIndex = document.createElement('div');
     var uvi = onecall.current.uvi;
-    uvIndex.textContent = "UV Index: ";
-    uvIndex.classList = "list-item";
+    uvIndex.textContent = 'UV Index: ';
+    uvIndex.classList = 'list-item';
     
     uviValue = document.createElement('span');
     uviValue.textContent = uvi;
@@ -124,16 +124,16 @@ function displayUVIndex(onecall) {
     //color change based on UV index
     if (uvi <=2) {
         // console.log('low');
-        uviValue.classList = "low";
+        uviValue.classList = 'low';
     } else if (uvi >2 && uvi <=5) {
         // console.log('medium');
-        uviValue.classList = "medium";
+        uviValue.classList = 'medium';
     } else if (uvi >5 && uvi <=7) {
         // console.log('high');
-        uviValue.classList = "high";
+        uviValue.classList = 'high';
     } else if (uvi >7) {
         // console.log('very high');
-        uviValue.classList = "very-high";
+        uviValue.classList = 'very-high';
     }
 
     uvIndex.appendChild(uviValue);
@@ -159,8 +159,8 @@ function get5Day(city) {
 //display future conditions
 function display5Day(forecast) {
     //empty forecast container
-    forecastDivEl.textContent = "";
-    forecastTitle.textContent = "5-Day Forecast:";
+    forecastDivEl.textContent = '';
+    forecastTitle.textContent = '5-Day Forecast:';
 
     //loop over 5 days of forecast data
     var forecast = forecast.list;
@@ -170,37 +170,37 @@ function display5Day(forecast) {
 
         //create div with classList bootstrap card
         var forecastEl = document.createElement('div');
-        forecastEl.classList = "cardBg text-light m-2 card";
+        forecastEl.classList = 'cardBg text-light m-2 card';
 
         //date element
         var forecastDate = document.createElement('h6');
-        forecastDate.classList = "card-header";
+        forecastDate.classList = 'card-header';
         //get unix timestamp dt and format it
-        forecastDate.textContent = moment.unix(forecastDay.dt).format("DD/MM/YYYY");
+        forecastDate.textContent = moment.unix(forecastDay.dt).format('DD/MM/YYYY');
         forecastEl.appendChild(forecastDate);
 
         //weather icon
         var weatherIcon = document.createElement('img');
         weatherIcon.setAttribute('src', `https://openweathermap.org/img/wn/${forecastDay.weather[0].icon}.png`);
-        weatherIcon.classList = "card-body cardImg";
+        weatherIcon.classList = 'card-body cardImg';
         forecastEl.appendChild(weatherIcon);
 
         //temperature span
         var tempForecast = document.createElement('span');
-        tempForecast.classList = "card-body";
-        tempForecast.textContent = "Temp: " + forecastDay.main.temp + " °C";
+        tempForecast.classList = 'card-body';
+        tempForecast.textContent = 'Temp: ' + forecastDay.main.temp + ' °C';
         forecastEl.appendChild(tempForecast);
         
         //wind span
         var windForecast = document.createElement('span');
-        windForecast.classList = "card-body";
-        windForecast.textContent = "Wind: " + forecastDay.wind.speed + " m/s";
+        windForecast.classList = 'card-body';
+        windForecast.textContent = 'Wind: ' + forecastDay.wind.speed + ' m/s';
         forecastEl.appendChild(windForecast);
         
         //humidity span
         var humidityForecast = document.createElement('span');
-        humidityForecast.classList = "card-body";
-        humidityForecast.textContent = "Humidity: " + forecastDay.main.humidity + "%";
+        humidityForecast.classList = 'card-body';
+        humidityForecast.textContent = 'Humidity: ' + forecastDay.main.humidity + '%';
         forecastEl.appendChild(humidityForecast);
 
         //append forecastEl to page
@@ -212,12 +212,12 @@ function display5Day(forecast) {
 function pastCities(pastSearch) {
     // console.log(pastSearch);
     //create button for past cities
-    var pastCitiesButton = document.createElement("button");
+    var pastCitiesButton = document.createElement('button');
     pastCitiesButton.textContent = pastSearch.charAt(0).toUpperCase() + pastSearch.slice(1);
-    pastCitiesButton.classList = "d-flex btn btn-secondary text-light justify-content-center col-12 mt-3";
+    pastCitiesButton.classList = 'd-flex btn btn-secondary text-light justify-content-center col-12 mt-3';
     
-    pastCitiesButton.setAttribute("city-name", pastSearch);
-    pastCitiesButton.setAttribute("type", "submit");
+    pastCitiesButton.setAttribute('city-name', pastSearch);
+    pastCitiesButton.setAttribute('type', 'submit');
     
     //prepend or append?
     pastSearchEl.appendChild(pastCitiesButton);
@@ -225,7 +225,7 @@ function pastCities(pastSearch) {
 
 // recall the city 
 function recallPastCity(event) {
-    var city = event.target.getAttribute("city-name");
+    var city = event.target.getAttribute('city-name');
     if(city) {
         getCityWeather(city);
         get5Day(city);
@@ -237,7 +237,7 @@ function recallPastCity(event) {
 form.addEventListener('submit', formSubmit);
 
 //Listen for pastCities click
-pastSearchEl.addEventListener("click", recallPastCity);
+pastSearchEl.addEventListener('click', recallPastCity);
 
 
 
