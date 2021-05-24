@@ -34,7 +34,7 @@ function displayWeather(weather) {
 
     //date element
     var currentDay = document.createElement('span');
-    currentDay.textContent = " (" + moment().format("DD MMM, YYYY") + ")";
+    currentDay.textContent = " (" + moment(weather.dt.value).format("DD MMM, YYYY") + ")"; //can use .dt.value OR sys.dt_txt
     citySearchInputEl.appendChild(currentDay);
 
     // image el for weather conditions
@@ -148,7 +148,8 @@ function display5Day(forecast) {
         //date element
         var forecastDate = document.createElement('h3');
         forecastDate.classList = "card-header";
-        forecastDate.textContent = "01/01/2021" //moment().format("DD MMM, YYYY") will need to fix
+        //get unix timestamp dt and format it
+        forecastDate.textContent = moment.unix(forecastDay.dt).format("DD/MM/YYYY");
         forecastEl.appendChild(forecastDate);
 
         //weather icon
