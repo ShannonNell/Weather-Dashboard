@@ -32,6 +32,7 @@
     border: none;
 }
 
+/* UV INDEX STYLE */
 span.low, span.medium, span.high, span.very-high {
     padding: 3px 7px;
     color: white;
@@ -49,4 +50,13 @@ span.high {
 }
 span.very-high {
     background-color: #911491;
+}
+
+/* CARD STYLE */
+.cardBg {
+    background-color: #1b3954;
+}
+
+.cardImg {
+    width:75%;
 }

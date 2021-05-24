@@ -170,10 +170,10 @@ function display5Day(forecast) {
 
         //create div with classList bootstrap card
         var forecastEl = document.createElement('div');
-        forecastEl.classList = "bg-primary text-light m-2 card";
+        forecastEl.classList = "cardBg text-light m-2 card";
 
         //date element
-        var forecastDate = document.createElement('h3');
+        var forecastDate = document.createElement('h5');
         forecastDate.classList = "card-header";
         //get unix timestamp dt and format it
         forecastDate.textContent = moment.unix(forecastDay.dt).format("DD/MM/YYYY");
@@ -182,24 +182,24 @@ function display5Day(forecast) {
         //weather icon
         var weatherIcon = document.createElement('img');
         weatherIcon.setAttribute('src', `https://openweathermap.org/img/wn/${forecastDay.weather[0].icon}.png`);
-        weatherIcon.classList = "card-body text-center";
+        weatherIcon.classList = "card-body cardImg";
         forecastEl.appendChild(weatherIcon);
 
         //temperature span
         var tempForecast = document.createElement('span');
-        tempForecast.classList = "card-body text center";
+        tempForecast.classList = "card-body";
         tempForecast.textContent = "Temp: " + forecastDay.main.temp + " °C";
         forecastEl.appendChild(tempForecast);
         
         //wind span
         var windForecast = document.createElement('span');
-        windForecast.classList = "card-body text center";
+        windForecast.classList = "card-body";
         windForecast.textContent = "Wind: " + forecastDay.wind.speed + " m/s";
         forecastEl.appendChild(windForecast);
         
         //humidity span
         var humidityForecast = document.createElement('span');
-        humidityForecast.classList = "card-body text center";
+        humidityForecast.classList = "card-body";
         humidityForecast.textContent = "Humidity: " + forecastDay.main.humidity + "%";
         forecastEl.appendChild(humidityForecast);
 
@@ -214,7 +214,7 @@ function pastCities(pastSearch) {
     //create button for past cities
     var pastCitiesButton = document.createElement("button");
     pastCitiesButton.textContent = pastSearch;
-    pastCitiesButton.classList = "d-flex btn btn-secondary col-12 mt-3"; //"d-flex w-100 btn-light border p-2"
+    pastCitiesButton.classList = "d-flex btn btn-secondary col-12 mt-3";
     
     pastCitiesButton.setAttribute("city-name", pastSearch);
     pastCitiesButton.setAttribute("type", "submit");
