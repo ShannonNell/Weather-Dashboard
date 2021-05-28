@@ -26,10 +26,32 @@ function formSubmit(event) {
         cityInput.value = '';
     } else {
         alert('Please enter a city');
+        return;
     }
     saveCity();
     pastCities(city);
 }
+
+
+
+// // load and display cities
+// function loadCities() {
+//     //load data from localStorage
+//     cities = JSON.parse(localStorage.getItem('cities'));
+//     console.log(cities);
+
+//     //if nothing in localStorage, create a new objec to track new cities
+//     if (!cities) {
+//         cities = [];
+//     };
+
+//     $.each(cities, function(list, arr) {
+//         var citiesBtn = $('<button>').addClass('d-flex btn btn-secondary text-light justify-content-center col-12 mt-3' + list).text(arr);
+
+//         //replace anything in pastSearch button with this updated cities button
+//         $('.pastSearch' + list).replaceWith(citiesBtn);
+//     });
+// }
 
 //save Cities to localStorage
 function saveCity() {
@@ -71,6 +93,7 @@ function displayWeather(weather, searchCity) {
     //span el for temp data
     var temperature = document.createElement('span');
     temperature.textContent = 'Temperature: ' + weather.main.temp + ' °C';
+    console.log(weather);
     temperature.classList = 'list-item';
     currentWeatherEl.appendChild(temperature);
     
@@ -208,8 +231,46 @@ function display5Day(forecast) {
     }
 };
 
+
+
+function loadCities() {
+    //check if anything stored in localStorage
+    if (localStorage.getItem('cities') === null) {
+        pastSearchEl.textContent = '';
+    } else {
+        //clear html before adding more onto button list
+        pastSearchEl.textContent = '';
+
+        //find stored cities
+        var storedCities = JSON.parse(localStorage.getItem('cities')) || [];
+        console.log('stored cities ' + storedCities);
+
+        //loop through new buttons elements
+        for (i = 0; i <storedCities.length; i++) {
+            var storedDiv = document.createElement('div');
+            var storedBtn = document.createElement('button');
+            storedBtn.classList = 'd-flex btn btn-secondary text-light justify-content-center col-12 mt-3';
+
+            storedBtn.setAttribute('city-name', storedCities[i]);
+            storedBtn.setAttribute('type', 'submit');
+
+            var storedInfo = storedCities[i];
+            console.log('StoredInfo ' + storedInfo);
+
+            storedBtn.textContent = storedInfo;
+            
+            storedDiv.appendChild(storedBtn);
+            pastSearchEl.appendChild(storedDiv);
+        }
+    }
+} 
+
+
+
+
 //display pastCities
 function pastCities(pastSearch) {
+    //clear html first 
     // console.log(pastSearch);
     //create button for past cities
     var pastCitiesButton = document.createElement('button');
@@ -239,5 +300,4 @@ form.addEventListener('submit', formSubmit);
 //Listen for pastCities click
 pastSearchEl.addEventListener('click', recallPastCity);
 
-
-
+loadCities();
