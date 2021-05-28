@@ -26,9 +26,9 @@ function loadCities() {
             var storedDiv = document.createElement('div');
             var storedBtn = document.createElement('button');
             storedBtn.classList = 'd-flex btn btn-secondary text-light justify-content-center col-12 mt-3';
-            storedBtn.id = JSON.stringify(storedCities[i]);
+            storedBtn.id = (storedCities[i].city);
 
-            storedBtn.setAttribute('city-name', storedCities[i]);
+            storedBtn.setAttribute('city-name', (storedCities[i].city));
             storedBtn.setAttribute('type', 'submit');
 
             storedBtn.textContent = storedCities[i].city;
