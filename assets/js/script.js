@@ -13,7 +13,50 @@ var forecastDivEl = document.querySelector('#five-day-div');
 //past search 
 var pastSearchEl = document.querySelector('.pastSearch');
 //empty array for cities to be placed
-var cities = [];
+var cityList = [];
+
+function loadCities() {
+    var storedCities = JSON.parse(localStorage.getItem('cities'));
+    console.log(storedCities);
+    // //check if anything stored in localStorage
+    // if (localStorage.getItem('cities') === null) {
+    //     pastSearchEl.textContent = '';
+    //     saveCity();
+    //     return;
+    // } else {
+    //     //clear html before adding more onto button list
+    //     pastSearchEl.textContent = '';
+
+    //     //find stored cities
+    //     var storedCities = JSON.parse(localStorage.getItem('cities')) || [];
+    //     console.log('stored cities ' + storedCities);
+
+    //     //loop through new buttons elements
+    //     for (i = 0; i <storedCities.length; i++) {
+    //         var storedDiv = document.createElement('div');
+    //         var storedBtn = document.createElement('button');
+    //         storedBtn.classList = 'd-flex btn btn-secondary text-light justify-content-center col-12 mt-3';
+
+    //         storedBtn.setAttribute('city-name', storedCities[i]);
+    //         storedBtn.setAttribute('type', 'submit');
+
+    //         var storedInfo = storedCities[i];
+    //         console.log('StoredInfo ' + storedInfo);
+
+    //         storedBtn.textContent = storedInfo;
+            
+    //         storedDiv.appendChild(storedBtn);
+    //         pastSearchEl.appendChild(storedDiv);
+    //     }
+
+    // }
+} 
+
+//save Cities to localStorage
+function saveCity() {
+    localStorage.setItem('cities', JSON.stringify(cityList));
+    // console.log(cities);
+};
 
 //Form entry submitted
 function formSubmit(event) {
@@ -22,7 +65,7 @@ function formSubmit(event) {
     if(city) {
         getCityWeather(city);
         get5Day(city);
-        cities.push({city}); ///here its getting messed up
+        cityList.push({city}); ///here its getting messed up
         cityInput.value = '';
     } else {
         alert('Please enter a city');
@@ -31,33 +74,6 @@ function formSubmit(event) {
     saveCity();
     pastCities(city);
 }
-
-
-
-// // load and display cities
-// function loadCities() {
-//     //load data from localStorage
-//     cities = JSON.parse(localStorage.getItem('cities'));
-//     console.log(cities);
-
-//     //if nothing in localStorage, create a new objec to track new cities
-//     if (!cities) {
-//         cities = [];
-//     };
-
-//     $.each(cities, function(list, arr) {
-//         var citiesBtn = $('<button>').addClass('d-flex btn btn-secondary text-light justify-content-center col-12 mt-3' + list).text(arr);
-
-//         //replace anything in pastSearch button with this updated cities button
-//         $('.pastSearch' + list).replaceWith(citiesBtn);
-//     });
-// }
-
-//save Cities to localStorage
-function saveCity() {
-    localStorage.setItem('cities', JSON.stringify(cities));
-    // console.log(cities);
-};
 
 //fetch city weather from API 
 function getCityWeather(city) {
@@ -231,43 +247,6 @@ function display5Day(forecast) {
     }
 };
 
-
-
-function loadCities() {
-    //check if anything stored in localStorage
-    if (localStorage.getItem('cities') === null) {
-        pastSearchEl.textContent = '';
-    } else {
-        //clear html before adding more onto button list
-        pastSearchEl.textContent = '';
-
-        //find stored cities
-        var storedCities = JSON.parse(localStorage.getItem('cities')) || [];
-        console.log('stored cities ' + storedCities);
-
-        //loop through new buttons elements
-        for (i = 0; i <storedCities.length; i++) {
-            var storedDiv = document.createElement('div');
-            var storedBtn = document.createElement('button');
-            storedBtn.classList = 'd-flex btn btn-secondary text-light justify-content-center col-12 mt-3';
-
-            storedBtn.setAttribute('city-name', storedCities[i]);
-            storedBtn.setAttribute('type', 'submit');
-
-            var storedInfo = storedCities[i];
-            console.log('StoredInfo ' + storedInfo);
-
-            storedBtn.textContent = storedInfo;
-            
-            storedDiv.appendChild(storedBtn);
-            pastSearchEl.appendChild(storedDiv);
-        }
-    }
-} 
-
-
-
-
 //display pastCities
 function pastCities(pastSearch) {
     //clear html first 
@@ -292,7 +271,6 @@ function recallPastCity(event) {
         get5Day(city);
     }
 }
-
 
 //Listen for search click
 form.addEventListener('submit', formSubmit);
