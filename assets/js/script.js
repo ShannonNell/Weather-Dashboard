@@ -16,40 +16,28 @@ var pastSearchEl = document.querySelector('.pastSearch');
 var cityList = [];
 
 function loadCities() {
-    var storedCities = JSON.parse(localStorage.getItem('cities'));
-    console.log(storedCities);
-    // //check if anything stored in localStorage
-    // if (localStorage.getItem('cities') === null) {
-    //     pastSearchEl.textContent = '';
-    //     saveCity();
-    //     return;
-    // } else {
-    //     //clear html before adding more onto button list
-    //     pastSearchEl.textContent = '';
+    var storedCities = localStorage.getItem('cities');
+    storedCities = JSON.parse(storedCities);
+    // console.log(storedCities);
 
-    //     //find stored cities
-    //     var storedCities = JSON.parse(localStorage.getItem('cities')) || [];
-    //     console.log('stored cities ' + storedCities);
+    if (storedCities != null) {
+        //loop through new buttons elements
+        for (i = 0; i <storedCities.length; i++) {
+            var storedDiv = document.createElement('div');
+            var storedBtn = document.createElement('button');
+            storedBtn.classList = 'd-flex btn btn-secondary text-light justify-content-center col-12 mt-3';
+            storedBtn.id = JSON.stringify(storedCities[i]);
 
-    //     //loop through new buttons elements
-    //     for (i = 0; i <storedCities.length; i++) {
-    //         var storedDiv = document.createElement('div');
-    //         var storedBtn = document.createElement('button');
-    //         storedBtn.classList = 'd-flex btn btn-secondary text-light justify-content-center col-12 mt-3';
+            storedBtn.setAttribute('city-name', storedCities[i]);
+            storedBtn.setAttribute('type', 'submit');
 
-    //         storedBtn.setAttribute('city-name', storedCities[i]);
-    //         storedBtn.setAttribute('type', 'submit');
-
-    //         var storedInfo = storedCities[i];
-    //         console.log('StoredInfo ' + storedInfo);
-
-    //         storedBtn.textContent = storedInfo;
+            storedBtn.textContent = storedCities[i].city;
+            console.log(storedCities[i]);
             
-    //         storedDiv.appendChild(storedBtn);
-    //         pastSearchEl.appendChild(storedDiv);
-    //     }
-
-    // }
+            storedDiv.appendChild(storedBtn);
+            pastSearchEl.appendChild(storedDiv);
+        }
+    }
 } 
 
 //save Cities to localStorage
