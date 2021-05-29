@@ -31,11 +31,17 @@ function loadCities() {
             storedBtn.setAttribute('city-name', (storedCities[i].city));
             storedBtn.setAttribute('type', 'submit');
 
-            storedBtn.textContent = storedCities[i].city;
-            console.log(storedCities[i]);
+            var city = storedCities[i].city;
+            // console.log(city);
+
+            storedBtn.textContent = city.charAt(0).toUpperCase() + city.slice(1);;
+            // console.log(storedCities[i]);
             
             storedDiv.appendChild(storedBtn);
             pastSearchEl.appendChild(storedDiv);
+
+            //push old cities onto list with new cities added via search
+            cityList.push({city})
         }
     }
 } 
@@ -53,13 +59,12 @@ function formSubmit(event) {
     if(city) {
         getCityWeather(city);
         get5Day(city);
-        cityList.push({city}); ///here its getting messed up
+        cityList.push({city});
         cityInput.value = '';
     } else {
         alert('Please enter a city');
         return;
     }
-    saveCity();
     pastCities(city);
 }
 
@@ -86,12 +91,12 @@ function displayWeather(weather, searchCity) {
 
     //date element
     var currentDay = document.createElement('span');
-    currentDay.textContent = ' (' + moment(weather.dt.value).format('DD MMM, YYYY') + ')'; //can use .dt.value OR sys.dt_txt
+    currentDay.textContent = ' (' + moment(weather.dt.value).format('DD MMM, YYYY') + ')'; 
     citySearchInputEl.appendChild(currentDay);
 
     // image el for weather conditions
     var weatherImg = document.createElement('img');
-    weatherImg.setAttribute('src', `https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`); //can add @2x before png to make bigger
+    weatherImg.setAttribute('src', `https://openweathermap.org/img/wn/${weather.weather[0].icon}.png`);
     citySearchInputEl.appendChild(weatherImg);
 
     //span el for temp data
@@ -237,8 +242,6 @@ function display5Day(forecast) {
 
 //display pastCities
 function pastCities(pastSearch) {
-    //clear html first 
-    // console.log(pastSearch);
     //create button for past cities
     var pastCitiesButton = document.createElement('button');
     pastCitiesButton.textContent = pastSearch.charAt(0).toUpperCase() + pastSearch.slice(1);
@@ -247,8 +250,10 @@ function pastCities(pastSearch) {
     pastCitiesButton.setAttribute('city-name', pastSearch);
     pastCitiesButton.setAttribute('type', 'submit');
     
-    //prepend or append?
+    //prepend
     pastSearchEl.appendChild(pastCitiesButton);
+
+    saveCity();
 };
 
 // recall the city 
