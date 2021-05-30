@@ -3,6 +3,8 @@
 ## Description
 Using a weather API, retrieve weather data for cities that will run in users browser and feature dynamically updated HTML and CSS. LocalStorage used to store persistent data.
 
+User can search for various cities, and once submit, will display current: city name, date, temperature, humidity, wind speed, and UV Index. It will also display a 5-day forecast to know when the best day to go to the beach is coming.
+
 Done as a challenge for UoT's Coding Bootcamp.
 
 ## Talbe of Contents
@@ -13,19 +15,20 @@ Done as a challenge for UoT's Coding Bootcamp.
 * [Challenge Guidelines](#challenge-guidelines)
 
 ## Usage
-Application that allows user to save events for each hour of the day.
-![screenshotHere](link to screenshot)
+Application that allows user search various cities to find current weather and a five day forecast.
+![screenshotHere](./assets/images/challenge6_screenshot.png)
 
 ## Links
 ### Deployed Quiz:
-* [Weather Dashboard](link)
-### Links that helped:
-* 
+* [Weather Dashboard](https://shannonnell.github.io/UoT-coding-challenge-6/)
 
 ## Tools
 * HTML 
 * CSS
 * JavaScript
+* Bootstrap
+* JQuery
+* Moment
 
 ## Credits
 * Completed by: [Nell-GitHub](https://github.com/ShannonNell)
