@@ -44,6 +44,8 @@ function loadCities() {
             //push old cities onto list with new cities added via search
             cityList.push({city})
         }
+    } else {
+        formSubmit();
     }
 } 
 
@@ -72,7 +74,7 @@ function formSubmit(event) {
 //fetch city weather from API 
 function getCityWeather(city) {
     var apiKey = '83bfc16ec7111348deb193634d24e4ad';
-    var apiURL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+    var apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
     
     fetch(apiURL)
         .then(function(response) {
@@ -103,7 +105,7 @@ function displayWeather(weather, searchCity) {
     //span el for temp data
     var temperature = document.createElement('span');
     temperature.textContent = 'Temperature: ' + weather.main.temp + ' °C';
-    console.log(weather);
+    // console.log(weather);
     temperature.classList = 'list-item';
     currentWeatherEl.appendChild(temperature);
     
