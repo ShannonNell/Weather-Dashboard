@@ -15,6 +15,7 @@ var pastSearchEl = document.querySelector('.pastSearch');
 //empty array for cities to be placed
 var cityList = [];
 
+//function to loadCities from localStorage
 function loadCities() {
     var storedCities = localStorage.getItem('cities');
     storedCities = JSON.parse(storedCities);
