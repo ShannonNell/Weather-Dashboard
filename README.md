@@ -19,8 +19,8 @@ Application that allows user search various cities to find current weather and a
 ![screenshotHere](./assets/images/challenge6_screenshot.png)
 
 ## Links
-### Deployed Quiz:
-* [Weather Dashboard](https://shannonnell.github.io/UoT-coding-challenge-6/)
+### Deployed App:
+* [Weather Dashboard](https://shannonnell.github.io/Weather-Dashboard/)
 
 ## Tools
 * HTML 
